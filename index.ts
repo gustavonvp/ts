@@ -1,18 +1,22 @@
-import { Car }  from './Car';
-
-
-const myCar = new Car();
-
-
+interface Driveable {
+    speed: number;
+    drive(): string;
+}
 
 
 
-// const Component = (target: any) => {
-//     console.log(target);
-// };
+class Car implements Driveable {
+    speed = 10;
+
+    drive() {
+        return `Iam driving at ${this.speed}`;
+    }
+}
+
+const myCarx = new Car();
+const startDriving  = (vehicle: Driveable) => {
+    vehicle.drive();
+};
 
 
-// @Component
-// class Car {
-   
-// }
+// startDriving(myCar);
