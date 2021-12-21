@@ -1,8 +1,8 @@
 const axios = require('axios');
-const WikipediaSearch = require('./test/wikipedia-search');
+const WikipediaSearch = require('./wikipedia-search');
 
 const run = async () => {
-    const wikiSearch = new WikipediaSearch();
+    const wikiSearch = new WikipediaSearch(axios.create({}));
 
     const results = await wikiSearch.search('space');
 
