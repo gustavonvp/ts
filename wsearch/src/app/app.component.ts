@@ -1,5 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { WikipediaService } from './wikipedia.service';
+
+
+@Injectable({providedIn: 'root'})
+export class Car {
+  color = 'red';
+}
 
 
 @Component({
@@ -9,7 +15,7 @@ import { WikipediaService } from './wikipedia.service';
 })
 export class AppComponent {
 
-  constructor(private wikipedia: WikipediaService ){
+  constructor(private wikipedia: WikipediaService, private car: Car ){
     
   }
 
@@ -17,5 +23,7 @@ export class AppComponent {
     //console.log('I the app and this is the term inside app component', term)
     const results = this.wikipedia.search(term);
     console.log(results);
+    console.log(this.car.color)
+   
   }
 }
