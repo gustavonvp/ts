@@ -8,7 +8,6 @@ container.appendChild(input);
 const observable = fromEvent(input, 'input')
 	.pipe(
     pluck('target', 'value'),
- 
     map(value => parseInt(value)),
     map(value => {
       if(isNaN(value)) {
