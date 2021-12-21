@@ -22,4 +22,11 @@ observable.subscribe(
     () => console.log('COMPLETE') //completition
 );
 
-observable;
+
+observable.subscribe((value) => {
+  console.log('From second subscribe'
+, value);
+});
+  
+//observable
+new Observable(() => {});
