@@ -7,14 +7,21 @@ const observable = new Observable((subscriber) => {
     subscriber.next(2);
     subscriber.next(3);
   
-  subscriber.error(new Error('terapia'));
+  
+ // setTimeout(() => {
+  //	subscriber.next(4);
+  
+ // }, 500);
+  
+  
+ // subscriber.error(new Error('terapia'));
   
 //   // Marks the observable as complete, no more values will come out
-//   subscriber.complete();
+ subscriber.complete();
 
  
 }).pipe(tap(value => console.log('From tap:', value)),
-    share()
+    //share()
 );
 
 observable.subscribe(
