@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchBarComponent implements OnInit {
 
+  term = '';
+
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(){
+  }
+
+  // onInput(value: string) {
+  //   this.term = value;
+  // }
+
+  onFormSubmit(event: any ) {
+    event.preventDefault();
+    console.log(this.term);
   }
 
 }
