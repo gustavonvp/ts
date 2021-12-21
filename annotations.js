@@ -7,9 +7,15 @@ container.appendChild(input);
 
 const observable = fromEvent(input, 'input')
 	.pipe(
-  	map(event => console.log(event)),
-    map(event => console.log(value))
-    	)
+  	map(event => event.target.value),
+    map(value => parseInt(value)),
+    map(value => {
+      if(isNaN(value)) {
+        throw new Error('Enter a number!');
+      	}
+      return value;
+      })
+    )
  
 
 observable;
