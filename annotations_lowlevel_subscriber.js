@@ -1,19 +1,20 @@
 const { Observable } = Rx;
-const { tap } = RxOperators;
+const { tap, share  } = RxOperators;
 
 const observable = new Observable((subscriber) => {
    // Throw the value 1 into our pipeline
  	subscriber.next(1);
-  subscriber.next(2);
-  subscriber.next(3);
+    subscriber.next(2);
+    subscriber.next(3);
   
   subscriber.error(new Error('terapia'));
   
-  // Marks the observable as complete, no more values will come out
-  subscriber.complete();
+//   // Marks the observable as complete, no more values will come out
+//   subscriber.complete();
 
  
-}).pipe(tap(value => console.log('From tap:', value))
+}).pipe(tap(value => console.log('From tap:', value)),
+    share()
 );
 
 observable.subscribe(
