@@ -10,6 +10,8 @@ export class PageListComponent implements OnInit {
 
   @Input() pages = [];
 
+  xss = `<IMG SRC=javascript:alert('XSS')>`;
+
   constructor() { }
 
   ngOnInit(): void {
