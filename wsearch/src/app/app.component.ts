@@ -1,7 +1,6 @@
 import { Component, Injectable } from '@angular/core';
 import { WikipediaService } from './wikipedia.service';
 
-
 @Injectable({providedIn: 'root'})
 export class Car {
   color = 'red';
@@ -14,19 +13,29 @@ export class Car {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
-  constructor(private wikipedia: WikipediaService, private car: Car ){
+  pages = [];
+  constructor( private wikipedia: WikipediaService, private car: Car ){
 
   }
 
-  onTerm(term: string){
+  onTermx(term: string){
     //console.log('I the app and this is the term inside app component', term)
     const results = this.wikipedia.search(term);
     console.log(results);
     console.log('My car has color an property = ' ,this.car.color)
    
   }
+
+  onTerm(term: string) {
+    this.wikipedia.search(term).subscribe((response: any) => {
+      this.pages = response.query.search;
+    });
+  }
+   
+  
+
 }
+
 
 // // Good!!! .....in theory
 // // But angular does this with injection in constructor of a component
