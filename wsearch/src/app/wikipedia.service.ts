@@ -4,6 +4,15 @@ import { Observable } from 'rxjs';
 import { pluck } from 'rxjs/operators';
 
 
+interface WikipediResponse {
+    query: {
+      search: {
+          title: string;
+          snipet: string;
+          pageid: number;
+      }[];
+    };
+}
 
 interface Car {
   year: number;
@@ -41,7 +50,7 @@ export class WikipediaService {
   constructor(private http: HttpClient) { }
 
   public search(term: string) {
-    return this.http.get('https://en.wikipedia.org/w/api.php', {
+    return this.http.get<WikipediResponse>('https://en.wikipedia.org/w/api.php', {
       params: {
         action: 'query',
         format: 'json',
@@ -50,6 +59,9 @@ export class WikipediaService {
         srsearch: term,
         origin: '*'
       }
-    });
+    }).pipe(
+      pluck('query', 'search')
+    )
+    ;
   }
 }
